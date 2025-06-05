@@ -1,4 +1,4 @@
-name: Maven Aggregated Workflow
+name: Maven with Docker Aggregated Workflow
 on:
   workflow_dispatch:
 

@@ -1,4 +1,4 @@
-name: Python Aggregated Workflow
+name: Python with Docker Aggregated Workflow
 on:
   workflow_dispatch:
 
