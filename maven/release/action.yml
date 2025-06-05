@@ -1,0 +1,31 @@
+name: Maven Release Action
+
+on:
+  workflow_dispatch:
+    inputs:
+      java-version:
+        description: "Java version to use for the release"
+        required: true
+        type: string
+        default: "21"
+  push:
+    branches:
+      - 'release/**'
+
+jobs:
+  release:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ github.event.inputs.java-version }}
+          distribution: 'temurin'
+
+      - name: Perform Release
+        run: |
+          mvn -B release:prepare release:perform -Darguments="-DskipTests"
