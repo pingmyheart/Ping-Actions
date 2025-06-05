@@ -15,7 +15,7 @@ runs:
     - name: Setup Java
       uses: actions/setup-java@v3
       with:
-        java-version: ${{ github.inputs.java-version }}
+        java-version: ${{ inputs.java-version }}
         distribution: 'temurin'
 
     - name: Configure Git
