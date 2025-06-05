@@ -51,7 +51,7 @@ runs:
         git fetch origin main
         git checkout main
         git pull origin main
-        git merge --no-off --allow-unrelated-histories ${{ github.ref_name }} -m "[GITHUB ACTION] - Merge release into main"
+        git merge --no-ff --allow-unrelated-histories ${{ github.ref_name }} -m "[GITHUB ACTION] - Merge release into main"
         git push origin main
 
     - name: Checkout develop and bump patch version from release
