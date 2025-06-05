@@ -23,3 +23,5 @@ runs:
       run: |
         mvn clean package deploy
         echo "Maven deploy completed successfully."
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
