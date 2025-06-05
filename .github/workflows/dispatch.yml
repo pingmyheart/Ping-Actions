@@ -11,8 +11,8 @@ on:
         type: choice
         options:
           - docker-maven
-          - maven
           - docker-python
+          - maven
       java-version:
         description: "Java version (if applicable)"
         required: false
