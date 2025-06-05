@@ -1,5 +1,12 @@
 name: Maven with Docker Aggregated Workflow
 on:
+  workflow_call:
+    inputs:
+      java-version:
+        description: "Java version (if applicable)"
+        required: false
+        type: string
+        default: "21"
   workflow_dispatch:
     inputs:
       java-version:
