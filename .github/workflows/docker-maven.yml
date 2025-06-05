@@ -26,10 +26,10 @@ jobs:
         uses: pingmyheart/Ping-Actions/.github/actions/maven/release@main
         with:
           java-version: '${{ inputs.java-version }}'
-        if: startsWith(github.ref_name, 'release/')
+        if: startsWith(github.ref, 'refs/heads/release/')
 
       - name: Import Maven Build and Deploy Action
         uses: pingmyheart/Ping-Actions/.github/actions/maven/deploy@main
         with:
           java-version: '${{ inputs.java-version }}'
-        if: ! startsWith(github.ref_name, 'release/')
+        if: !startsWith(github.ref, 'refs/heads/release/')
