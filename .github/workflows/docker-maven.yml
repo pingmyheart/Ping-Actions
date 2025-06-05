@@ -32,3 +32,4 @@ jobs:
         uses: pingmyheart/Ping-Actions/.github/actions/maven/deploy@main
         with:
           java-version: '${{ inputs.java-version }}'
+        if: !startsWith(github.ref_name, 'release/')
