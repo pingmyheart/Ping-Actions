@@ -25,8 +25,8 @@ jobs:
     runs-on: ubuntu-22.04
 
     permissions:
-      contents: write
-      packages: write
+      contents: read
+      packages: read
 
     steps:
       - name: Run workflow
