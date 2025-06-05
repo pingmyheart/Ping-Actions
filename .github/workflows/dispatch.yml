@@ -20,26 +20,6 @@ on:
         required: false
         type: string
         default: "3.10"
-#  workflow_dispatch:
-#    inputs:
-#      project-type:
-#        description: "Select the project type"
-#        required: true
-#        type: choice
-#        options:
-#          - docker-maven
-#          - docker-python
-#          - maven
-#      java-version:
-#        description: "Java version (if applicable)"
-#        required: false
-#        type: string
-#        default: "21"
-#      python-version:
-#        description: "Python version (if applicable)"
-#        required: false
-#        type: string
-#        default: "3.10"
 jobs:
   dispatch:
     runs-on: ubuntu-22.04
