@@ -1,7 +1,7 @@
 name: Maven Release Action
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       java-version:
         description: "Java version to use for the release"
