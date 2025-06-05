@@ -41,7 +41,7 @@ runs:
     - name: Commit and push release version
       shell: bash
       run: |
-        git add pom.xml
+        git add .
         git commit -m "[GITHUB ACTION] - Set Release version to ${{ env.RELEASE_VERSION }}"
         git push origin HEAD
 
@@ -50,7 +50,8 @@ runs:
       run: |
         git fetch origin main
         git checkout main
-        git merge -s ours --allow-unrelated-histories -m "[GITHUB ACTION] - Merge release into main" ${{ github.ref_name }}
+        git pull origin main
+        git merge --no-off --allow-unrelated-histories ${{ github.ref_name }} -m "[GITHUB ACTION] - Merge release into main"
         git push origin main
 
     - name: Checkout develop and bump patch version from release
@@ -58,6 +59,7 @@ runs:
       run: |
         git fetch origin develop
         git checkout develop
+        git pull origin develop
         
         # Extract version parts
         IFS='.' read -r major minor patch <<<"${{ env.RELEASE_VERSION }}"
