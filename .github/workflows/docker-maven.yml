@@ -20,6 +20,10 @@ on:
 
 jobs:
   release:
+    permissions:
+      contents: write
+      packages: write
+      pages: write
     runs-on: ubuntu-22.04
     steps:
       - name: Import Maven Release Action
