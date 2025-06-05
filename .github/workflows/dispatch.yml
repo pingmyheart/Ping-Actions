@@ -20,6 +20,9 @@ on:
         required: false
         type: string
         default: "3.10"
+    secrets:
+      GH_PAT:
+        required: false
 jobs:
   dispatch:
     runs-on: ubuntu-22.04
@@ -28,7 +31,7 @@ jobs:
       - name: Run workflow
         uses: actions/github-script@v7
         with:
-          github-token: '${{ github.token }}'
+          github-token: '${{ secrets.GH_PAT }}'
           script: |
             const projectType = '${{ github.event.inputs.project-type }}';
             const inputs={}
