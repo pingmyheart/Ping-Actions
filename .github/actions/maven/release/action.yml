@@ -19,6 +19,7 @@ runs:
         distribution: 'temurin'
 
     - name: Configure Git
+      shell: bash
       run: |
         git config user.name "${{ github.actor }}"
         git config user.email "${{ github.actor }}@users.noreply.github.com"
@@ -26,6 +27,7 @@ runs:
         echo "https://oauth2:${{ github.token }}:@github.com" > ~/.git-credentials
 
     - name: Get release version from pom.xml
+      shell: bash
       id: get_release_version
       run: |
         release_version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
@@ -34,15 +36,18 @@ runs:
         echo "Release version is $clean_version"
 
     - name: Set final release version (remove -SNAPSHOT)
+      shell: bash
       run: mvn versions:set -DnewVersion=${{ env.RELEASE_VERSION }} -DgenerateBackupPoms=false
 
     - name: Commit and push release version
+      shell: bash
       run: |
         git add pom.xml
         git commit -m "[GITHUB ACTION] - Set Release version to ${{ env.RELEASE_VERSION }}"
         git push origin HEAD
 
     - name: Merge release into main
+      shell: bash
       run: |
         git fetch origin main
         git checkout main
@@ -50,6 +55,7 @@ runs:
         git push origin main
 
     - name: Checkout develop and bump patch version from release
+      shell: bash
       run: |
         git fetch origin develop
         git checkout develop
