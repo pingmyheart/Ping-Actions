@@ -4,6 +4,22 @@ on:
     branches:
       - '**'
   workflow_call:
+    inputs:
+      project-type:
+        description: "Select the project type"
+        type: string
+        required: true
+        default: ""
+      java-version:
+        description: "Java version (if applicable)"
+        required: false
+        type: string
+        default: "21"
+      python-version:
+        description: "Python version (if applicable)"
+        required: false
+        type: string
+        default: "3.10"
   workflow_dispatch:
     inputs:
       project-type:
