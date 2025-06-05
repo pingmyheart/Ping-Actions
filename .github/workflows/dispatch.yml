@@ -35,6 +35,10 @@ jobs:
             const projectType = '${{ github.event.inputs.project-type }}';
             const inputs={}
             
+            if(!projectType){
+                return;
+            }
+            
             if(projectType === 'docker-maven' || projectType === 'maven') {
               inputs['java-version'] = '${{ github.event.inputs.java-version }}';
             } else if (projectType === 'docker-python') {
