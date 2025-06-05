@@ -22,4 +22,5 @@ jobs:
   release:
     runs-on: ubuntu-22.04
     steps:
-      - uses: pingmyheart/Ping-Actions/python/release
+      - name: Import Python Release Action
+        uses: pingmyheart/Ping-Actions/python/release
