@@ -1,4 +1,4 @@
-name: maven.yml
+name: Maven Aggregated Workflow
 on:
   workflow_call:
 

@@ -1,4 +1,4 @@
-name: python.yml
+name: Python Aggregated Workflow
 on:
   workflow_call:
 
