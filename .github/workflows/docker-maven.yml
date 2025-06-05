@@ -26,5 +26,10 @@ jobs:
       - name: Import Maven Release Action
         uses: pingmyheart/Ping-Actions/.github/actions/maven/release@main
         with:
-          java-version: '17'
+          java-version: '${{ inputs.java-version }}'
         if: startsWith(github.ref_name, 'release/')
+
+      - name: Import Maven Build and Deploy Action
+        uses: pingmyheart/Ping-Actions/.github/actions/maven/release@main
+        with:
+          java-version: '${{ inputs.java-version }}'
