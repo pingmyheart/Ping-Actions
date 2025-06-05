@@ -17,6 +17,7 @@ runs:
       with:
         java-version: ${{ inputs.java-version }}
         distribution: 'temurin'
+        cache: 'maven'
 
     - name: Build and Deploy
       shell: bash

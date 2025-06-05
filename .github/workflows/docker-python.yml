@@ -19,8 +19,11 @@ on:
         default: "3.10"
 
 jobs:
-  release:
+  distribute:
     runs-on: ubuntu-22.04
     steps:
       - name: Import Python Release Action
         uses: pingmyheart/Ping-Actions/.github/actions/python/release@main
+        with:
+          python-version: '${{ inputs.python-version }}'
+        if: startsWith(github.ref_name, 'release/')

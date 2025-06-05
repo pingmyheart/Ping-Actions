@@ -19,8 +19,7 @@ on:
         default: "21"
 
 jobs:
-  release:
-
+  distribute:
     runs-on: ubuntu-22.04
     steps:
       - name: Import Maven Release Action

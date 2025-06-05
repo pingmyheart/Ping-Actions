@@ -19,8 +19,16 @@ on:
         default: "21"
 
 jobs:
-  release:
+  distribute:
     runs-on: ubuntu-22.04
     steps:
       - name: Import Maven Release Action
         uses: pingmyheart/Ping-Actions/.github/actions/maven/release@main
+        with:
+          java-version: '${{ inputs.java-version }}'
+        if: startsWith(github.ref_name, 'release/')
+
+      - name: Import Maven Build and Deploy Action
+        uses: pingmyheart/Ping-Actions/.github/actions/maven/deploy@main
+        with:
+          java-version: '${{ inputs.java-version }}'
