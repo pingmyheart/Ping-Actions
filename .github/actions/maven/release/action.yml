@@ -23,7 +23,7 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
-          java-version: ${{ github.event.inputs.java-version }}
+          java-version: ${{ github.inputs.java-version }}
           distribution: 'temurin'
 
       - name: Configure Git
