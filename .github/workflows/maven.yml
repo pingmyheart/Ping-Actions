@@ -1,4 +1,9 @@
 name: maven.yml
 on:
+  workflow_call:
 
 jobs:
+  release:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: ./maven/release
