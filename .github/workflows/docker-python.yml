@@ -1,5 +1,8 @@
 name: Python with Docker Aggregated Workflow
 on:
+  push:
+    branches:
+      - '**'
   workflow_call:
     inputs:
       python-version:

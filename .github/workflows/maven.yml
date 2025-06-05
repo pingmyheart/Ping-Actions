@@ -1,5 +1,8 @@
 name: Maven Aggregated Workflow
 on:
+  push:
+    branches:
+      - '**'
   workflow_call:
     inputs:
       java-version:
