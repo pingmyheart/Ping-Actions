@@ -68,6 +68,6 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: `${projectType}.yml`,
-              ref: 'main',
+              ref: '${{github.ref_name}}',
               inputs
             })
