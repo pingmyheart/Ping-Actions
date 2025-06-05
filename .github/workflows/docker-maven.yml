@@ -1,4 +1,9 @@
-name: docker-maven.yml
+name: Maven Aggregated Workflow
 on:
+  workflow_dispatch:
 
 jobs:
+  release:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: ./maven/release
