@@ -30,6 +30,6 @@ jobs:
         if: startsWith(github.ref_name, 'release/')
 
       - name: Import Maven Build and Deploy Action
-        uses: pingmyheart/Ping-Actions/.github/actions/maven/release@main
+        uses: pingmyheart/Ping-Actions/.github/actions/maven/deploy@main
         with:
           java-version: '${{ inputs.java-version }}'
