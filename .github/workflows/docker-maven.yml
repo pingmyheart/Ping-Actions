@@ -24,3 +24,4 @@ jobs:
     steps:
       - name: Import Maven Release Action
         uses: pingmyheart/Ping-Actions/.github/actions/maven/release@main
+        if: startsWith(github.ref_name, 'release/')
