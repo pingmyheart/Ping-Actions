@@ -1,5 +1,8 @@
 name: CI Dispatcher
 on:
+  push:
+    branches:
+      - '**'
   workflow_dispatch:
     inputs:
       project-type:
