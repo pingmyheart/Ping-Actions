@@ -45,6 +45,14 @@ runs:
         git checkout ${{ github.ref_name }}
         git push origin HEAD:main --force
 
+    - name: Tag main with release version
+      shell: bash
+      run: |
+        git fetch origin main
+        git checkout main
+        git tag -a "v${{ env.RELEASE_VERSION }}" -m "Release version ${{ env.RELEASE_VERSION }}"
+        git push origin main --tags
+
     - name: Checkout develop and bump patch version from release
       shell: bash
       run: |
