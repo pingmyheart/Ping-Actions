@@ -1,4 +1,4 @@
-name: Maven Aggregated Workflow
+name: Python Executable Aggregated Workflow
 on:
   workflow_dispatch:
     inputs:
