@@ -1,24 +1,9 @@
 name: Maven Release Action
-inputs:
-  java-version:
-    description: "Java version to use for the release"
-    required: true
-    default: "21"
 
 runs:
   using: composite
 
   steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Setup Java
-      uses: actions/setup-java@v3
-      with:
-        java-version: ${{ inputs.java-version }}
-        distribution: 'temurin'
-        cache: 'maven'
-
     - name: Configure Git
       shell: bash
       run: |

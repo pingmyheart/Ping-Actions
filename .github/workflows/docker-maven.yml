@@ -1,16 +1,6 @@
 name: Maven with Docker Aggregated Workflow
 on:
-  push:
-    branches:
-      - '**'
   workflow_call:
-    inputs:
-      java-version:
-        description: "Java version (if applicable)"
-        required: false
-        type: string
-        default: "21"
-  workflow_dispatch:
     inputs:
       java-version:
         description: "Java version (if applicable)"
@@ -22,14 +12,23 @@ jobs:
   distribute:
     runs-on: ubuntu-22.04
     steps:
-      - name: Import Maven Release Action
-        uses: pingmyheart/Ping-Actions/.github/actions/maven/release@main
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
         with:
-          java-version: '${{ inputs.java-version }}'
+          java-version: ${{ inputs.java-version }}
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Maven Release Action
+        uses: pingmyheart/Ping-Actions/.github/actions/maven/release@main
         if: startsWith(github.ref, 'refs/heads/release/')
 
-      - name: Import Maven Build and Deploy Action
+      - name: Maven Build and Deploy Action
         uses: pingmyheart/Ping-Actions/.github/actions/maven/deploy@main
-        with:
-          java-version: '${{ inputs.java-version }}'
         if: startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/heads/develop') || startsWith(github.ref, 'refs/heads/feature/')
+
+      - name: Docker Build and Push Action
+        uses: pingmyheart/Ping-Actions/.github/actions/docker/build-and-push@main

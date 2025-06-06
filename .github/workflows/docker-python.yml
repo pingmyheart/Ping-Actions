@@ -1,16 +1,6 @@
 name: Python with Docker Aggregated Workflow
 on:
-  push:
-    branches:
-      - '**'
   workflow_call:
-    inputs:
-      python-version:
-        description: "Python version (if applicable)"
-        required: false
-        type: string
-        default: "3.10"
-  workflow_dispatch:
     inputs:
       python-version:
         description: "Python version (if applicable)"
@@ -22,8 +12,14 @@ jobs:
   distribute:
     runs-on: ubuntu-22.04
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ inputs.python-version }}
+
       - name: Import Python Release Action
         uses: pingmyheart/Ping-Actions/.github/actions/python/release@main
-        with:
-          python-version: '${{ inputs.python-version }}'
         if: startsWith(github.ref_name, 'release/')
