@@ -28,15 +28,15 @@ jobs:
       - name: Run workflow
         uses: actions/github-script@v7
         with:
-          github-token: '${{ secrets.GH_PAT }}'
+          github-token: '${{ github.token }}'
           script: |
-            const projectType = '${{ github.event.inputs.project-type }}';
+            const projectType = '${{ inputs.project-type }}';
             const inputs={}
             
             if(projectType === 'docker-maven' || projectType === 'maven') {
-              inputs['java-version'] = '${{ github.event.inputs.java-version }}';
+              inputs['java-version'] = '${{ inputs.java-version }}';
             } else if (projectType === 'docker-python') {
-              inputs['python-version'] = '${{ github.event.inputs.python-version }}';
+              inputs['python-version'] = '${{ inputs.python-version }}';
             }
             
             
