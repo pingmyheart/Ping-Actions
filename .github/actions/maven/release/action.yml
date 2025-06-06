@@ -34,10 +34,8 @@ runs:
       shell: bash
       run: |
         git fetch origin main
-        git checkout main
-        git pull origin main
-        git merge --no-ff --allow-unrelated-histories ${{ github.ref_name }} -m "[GITHUB ACTION] - Merge release into main"
-        git push origin main
+        git checkout ${{ github.ref_name }}
+        git push origin HEAD:main --force
 
     - name: Checkout develop and bump patch version from release
       shell: bash
