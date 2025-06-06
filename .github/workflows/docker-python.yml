@@ -20,6 +20,6 @@ jobs:
         with:
           python-version: ${{ inputs.python-version }}
 
-      - name: Import Python Release Action
+      - name: Python Release Action
         uses: pingmyheart/Ping-Actions/.github/actions/python/release@main
         if: startsWith(github.ref_name, 'release/')

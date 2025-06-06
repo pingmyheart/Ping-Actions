@@ -22,9 +22,10 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Import Maven Release Action
+      - name: Maven Release Action
         uses: pingmyheart/Ping-Actions/.github/actions/maven/release@main
-        if: startsWith(github.ref_name, 'release/')
+        if: "startsWith(github.ref, 'refs/heads/release/')"
 
-      - name: Import Maven Build and Deploy Action
+      - name: Maven Build and Deploy Action
         uses: pingmyheart/Ping-Actions/.github/actions/maven/deploy@main
+        if: "!startsWith(github.ref, 'refs/heads/release/')"
