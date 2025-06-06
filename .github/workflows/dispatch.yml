@@ -17,9 +17,6 @@ on:
         required: false
         type: string
         default: "3.10"
-    secrets:
-      GH_PAT:
-        required: false
 jobs:
   dispatch:
     runs-on: ubuntu-22.04
@@ -28,25 +25,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Run workflow
-        uses: actions/github-script@v7
+      - name: Docker Maven Workflow
+        if: ${{ inputs.project-type == 'docker-maven' }}
+        uses: pingmyheart/Ping-Actions/.github/workflows/docker-maven.yml@main
         with:
-          github-token: '${{ github.token }}'
-          script: |
-            const projectType = '${{ inputs.project-type }}';
-            const inputs={}
-            
-            if(projectType === 'docker-maven' || projectType === 'maven') {
-              inputs['java-version'] = '${{ inputs.java-version }}';
-            } else if (projectType === 'docker-python') {
-              inputs['python-version'] = '${{ inputs.python-version }}';
-            }
-            
-            
-            await github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: `pingmyheart/Ping-Actions/.github/workflows/${projectType}.yml`,
-              ref: '${{github.ref_name}}',
-              inputs
-            })
+          java-version: ${{ inputs.java-version }}
+
+      - name: Docker Python Workflow
+        if: ${{ inputs.project-type == 'docker-python' }}
+        uses: pingmyheart/Ping-Actions/.github/workflows/docker-python.yml@main
+        with:
+          python-version: ${{ inputs.python-version }}
+
+      - name: Maven Workflow
+        if: ${{ inputs.project-type == 'maven' }}
+        uses: pingmyheart/Ping-Actions/.github/workflows/maven.yml@main
+        with:
+          java-version: ${{ inputs.java-version }}
