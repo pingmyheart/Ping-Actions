@@ -22,4 +22,4 @@ jobs:
 
       - name: Python Release Action
         uses: pingmyheart/Ping-Actions/.github/actions/python/release@main
-        if: startsWith(github.ref_name, 'release/')
+        if: "startsWith(github.ref, 'refs/heads/release/')"
