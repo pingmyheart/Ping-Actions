@@ -33,7 +33,11 @@ jobs:
         uses: pingmyheart/Ping-Actions/.github/actions/maven/release@main
         if: "startsWith(github.ref, 'refs/heads/release/')"
 
-      - name: Maven Build and Deploy Action
+      - name: Maven Build Action
+        uses: pingmyheart/Ping-Actions/.github/actions/maven/build@main
+        if: "!startsWith(github.ref, 'refs/heads/release')"
+
+      - name: Maven Deploy Action
         uses: pingmyheart/Ping-Actions/.github/actions/maven/deploy@main
         if: "!startsWith(github.ref, 'refs/heads/release')"
 

@@ -1,0 +1,36 @@
+name: Maven Aggregated Workflow
+on:
+  workflow_dispatch:
+    inputs:
+      python-version:
+        description: "Python version (if applicable)"
+        required: false
+        type: string
+        default: "3.10"
+  workflow_call:
+    inputs:
+      python-version:
+        description: "Python version (if applicable)"
+        required: false
+        type: string
+        default: "3.10"
+
+jobs:
+  ci:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ inputs.python-version }}
+
+      - name: Python Release Action
+        uses: pingmyheart/Ping-Actions/.github/actions/python/release@main
+        if: "startsWith(github.ref, 'refs/heads/release/')"
+
+      - name: Python Build and Deploy Action
+        uses: pingmyheart/Ping-Actions/.github/actions/python/deploy@main
+        if: "!startsWith(github.ref, 'refs/heads/release/')"

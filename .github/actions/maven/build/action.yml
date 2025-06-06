@@ -1,0 +1,13 @@
+name: Maven Build Action
+
+runs:
+  using: composite
+
+  steps:
+    - name: Build
+      shell: bash
+      run: |
+        mvn -B clean package
+        echo "Maven build completed successfully."
+      env:
+        GITHUB_TOKEN: ${{ github.token }}

@@ -1,13 +1,13 @@
-name: Maven Deploy Action
+name: Maven Deploy Executable Action
 
 runs:
   using: composite
 
   steps:
-    - name: Deploy
+    - name: Build and Deploy
       shell: bash
       run: |
-        mvn -B deploy
+        mvn clean package deploy
         echo "Maven deploy completed successfully."
       env:
         GITHUB_TOKEN: ${{ github.token }}
