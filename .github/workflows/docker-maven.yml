@@ -24,12 +24,12 @@ jobs:
 
       - name: Maven Release Action
         uses: pingmyheart/Ping-Actions/.github/actions/maven/release@main
-        if: startsWith(github.ref, 'refs/heads/release/')
+        if: "startsWith(github.ref, 'refs/heads/release/')"
 
       - name: Maven Build and Deploy Action
         uses: pingmyheart/Ping-Actions/.github/actions/maven/deploy@main
-        if: ! startsWith(github.ref, 'refs/heads/release')
+        if: "!startsWith(github.ref, 'refs/heads/release')"
 
       - name: Docker Build and Push Action
         uses: pingmyheart/Ping-Actions/.github/actions/docker/build-and-push@main
-        if: ! startsWith(github.ref, 'refs/heads/release')
+        if: "!startsWith(github.ref, 'refs/heads/release')"
