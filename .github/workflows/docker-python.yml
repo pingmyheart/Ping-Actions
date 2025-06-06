@@ -1,5 +1,12 @@
 name: Python with Docker Aggregated Workflow
 on:
+  workflow_dispatch:
+    inputs:
+      python-version:
+        description: "Python version (if applicable)"
+        required: false
+        type: string
+        default: "3.10"
   workflow_call:
     inputs:
       python-version:
