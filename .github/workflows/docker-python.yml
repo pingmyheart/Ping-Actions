@@ -30,3 +30,7 @@ jobs:
       - name: Python Release Action
         uses: pingmyheart/Ping-Actions/.github/actions/python/release@main
         if: "startsWith(github.ref, 'refs/heads/release/')"
+
+      - name: Docker Build and Push Action
+        uses: pingmyheart/Ping-Actions/.github/actions/docker/build-and-push@main
+        if: "!startsWith(github.ref, 'refs/heads/release')"
