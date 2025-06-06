@@ -6,9 +6,18 @@ runs:
       shell: bash
       id: get_version
       run: |
-        VERSION=$(python3 setup.py --version)
-        echo "VERSION=$VERSION" >> $GITHUB_ENV
-        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        if [ -f setup.py ]; then
+          VERSION=$(python3 setup.py --version)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+        elif [ -f pom.xml ]; then
+          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+        else
+          echo "No setup.py or pom.xml found. Cannot determine version."
+          exit 1
+        fi
 
     - name: Log in to GitHub Container Registry
       uses: docker/login-action@v3
