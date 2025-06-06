@@ -9,7 +9,7 @@ on:
         default: "3.10"
 
 jobs:
-  distribute:
+  ci:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
