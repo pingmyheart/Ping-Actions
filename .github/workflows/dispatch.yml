@@ -28,16 +28,16 @@ jobs:
         uses: pingmyheart/Ping-Actions/.github/workflows/docker-maven.yml@main
         with:
           java-version: ${{ inputs.java-version }}
-        if: ${{ inputs.project-type == 'docker-maven' }}
+        if: "${{ inputs.project-type == 'docker-maven' }}"
 
       - name: Docker Python Workflow
         uses: pingmyheart/Ping-Actions/.github/workflows/docker-python.yml@main
         with:
           python-version: ${{ inputs.python-version }}
-        if: ${{ inputs.project-type == 'docker-python' }}
+        if: "${{ inputs.project-type == 'docker-python' }}"
 
       - name: Maven Workflow
         uses: pingmyheart/Ping-Actions/.github/workflows/maven.yml@main
         with:
           java-version: ${{ inputs.java-version }}
-        if: ${{ inputs.project-type == 'maven' }}
+        if: "${{ inputs.project-type == 'maven' }}"
