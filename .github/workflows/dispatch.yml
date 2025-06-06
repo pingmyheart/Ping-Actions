@@ -46,7 +46,7 @@ jobs:
             await github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              workflow_id: `${projectType}.yml`,
+              workflow_id: `pingmyheart/Ping-Actions/.github/workflows/${projectType}.yml`,
               ref: '${{github.ref_name}}',
               inputs
             })
