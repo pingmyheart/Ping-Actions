@@ -28,7 +28,7 @@ jobs:
           python-version: ${{ inputs.python-version }}
 
       - name: Python Release Action
-        uses: pingmyheart/Ping-Actions/.github/actions/python/release@main
+        uses: pingmyheart/Ping-Actions/.github/actions/python/gitflow-release@main
         if: "startsWith(github.ref, 'refs/heads/release/')"
 
       - name: Docker Build and Push Action

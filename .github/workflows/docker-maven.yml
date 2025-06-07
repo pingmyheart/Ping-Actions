@@ -30,7 +30,7 @@ jobs:
           cache: 'maven'
 
       - name: Maven Release Action
-        uses: pingmyheart/Ping-Actions/.github/actions/maven/release@main
+        uses: pingmyheart/Ping-Actions/.github/actions/maven/gitflow-release@main
         if: "startsWith(github.ref, 'refs/heads/release/')"
 
       - name: Maven Build Action
