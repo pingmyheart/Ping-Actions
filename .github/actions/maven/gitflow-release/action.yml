@@ -45,6 +45,11 @@ runs:
         git tag -a "v${{ env.RELEASE_VERSION }}" -m "Release version ${{ env.RELEASE_VERSION }}"
         git push origin main --tags
 
+    - name: GitHub Release
+      uses: softprops/action-gh-release@v2
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+
     - name: Checkout develop and bump patch version from release
       shell: bash
       run: |
