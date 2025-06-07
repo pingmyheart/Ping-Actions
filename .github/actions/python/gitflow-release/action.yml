@@ -68,7 +68,7 @@ runs:
         if [ -f __version__.py]; then
           sed -i -E 's|version.*|version = "${next_version}"|g' __version__.py
         else
-          sed -i "s/version.*/version='${next_version}'/" setup.py
+          sed -i -E "s/version.*/version='${next_version}'/" setup.py
         fi
         
         git add .
