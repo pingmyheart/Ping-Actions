@@ -35,12 +35,24 @@ jobs:
 
       - name: Maven Build Action
         uses: pingmyheart/Ping-Actions/.github/actions/maven/build@main
-        if: "!startsWith(github.ref, 'refs/heads/release')"
+        if: "!startsWith(github.ref, 'refs/heads/release') && 
+            !startsWith(github.ref, 'refs/heads/main') && 
+            !startsWith(github.ref, 'refs/tags/v' )"
 
       - name: Maven Deploy Action
         uses: pingmyheart/Ping-Actions/.github/actions/maven/deploy@main
-        if: "!startsWith(github.ref, 'refs/heads/release')"
+        if: "!startsWith(github.ref, 'refs/heads/release') && 
+            !startsWith(github.ref, 'refs/heads/main') && 
+            !startsWith(github.ref, 'refs/tags/v' )"
 
       - name: Docker Build and Push Action
         uses: pingmyheart/Ping-Actions/.github/actions/docker/build-and-push@main
-        if: "!startsWith(github.ref, 'refs/heads/release')"
+        if: "!startsWith(github.ref, 'refs/heads/release') && 
+            !startsWith(github.ref, 'refs/heads/main') && 
+            !startsWith(github.ref, 'refs/tags/v' )"
+
+      - name: Github Release Action
+        uses: pingmyheart/Ping-Actions/.github/actions/maven/github-release@main
+        if: "!startsWith(github.ref, 'refs/heads/release') && 
+            !startsWith(github.ref, 'refs/heads/main') && 
+            startsWith(github.ref, 'refs/tags/v' )"

@@ -1,0 +1,10 @@
+name: Github Release Action
+
+runs:
+  using: composite
+
+  steps:
+    - name: GitHub Release
+      uses: softprops/action-gh-release@v2
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
