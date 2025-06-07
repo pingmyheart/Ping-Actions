@@ -91,3 +91,16 @@ runs:
             workflow_id: 'ci.yml',
             ref: 'refs/heads/develop'
           });
+
+    - name: Trigger default workflow on tag
+      uses: actions/github-script@v7
+      with:
+        github-token: ${{ github.token }}
+        script: |
+          await github.rest.actions.createWorkflowDispatch({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            workflow_id: 'ci.yml',
+            ref: 'refs/tags/v${{ env.RELEASE_VERSION }}'
+          });
+      
