@@ -31,9 +31,25 @@ jobs:
           python-version: ${{ inputs.python-version }}
 
       - name: Python Release Action
-        uses: pingmyheart/Ping-Actions/.github/actions/python/release@main
+        uses: pingmyheart/Ping-Actions/.github/actions/python/gitflow-release@main
         if: "startsWith(github.ref, 'refs/heads/release/')"
 
-      - name: Python Build and Deploy Action
-        uses: pingmyheart/Ping-Actions/.github/actions/python/deploy@main
-        if: "!startsWith(github.ref, 'refs/heads/release/')"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+        if: "startsWith(github.ref, 'refs/tags/v')"
+
+      - name: Python Build Executable Action
+        uses: pingmyheart/Ping-Actions/.github/actions/python/build-executable@main
+        if: "startsWith(github.ref, 'refs/tags/v')"
+
+      - name: Upload to GitHub Release
+        uses: softprops/action-gh-release@v2
+        if: "startsWith(github.ref, 'refs/tags/v')"
+        with:
+          files: |
+            dist/*
+        env:
+          GITHUB_TOKEN: ${{ github.token }}

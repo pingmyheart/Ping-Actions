@@ -1,0 +1,15 @@
+name: Maven Build Action
+
+runs:
+  using: composite
+
+  steps:
+    - name: Build
+      shell: bash
+      run: |
+        if [ -f builder.py ]; then
+          python builder.py
+        else
+          echo "No builder.py found. Cannot build."
+          exit 1
+        fi
