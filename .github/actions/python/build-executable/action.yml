@@ -1,4 +1,4 @@
-name: Maven Build Action
+name: Python Build Executable Action
 
 runs:
   using: composite
