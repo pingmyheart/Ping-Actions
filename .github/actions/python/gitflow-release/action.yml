@@ -22,7 +22,7 @@ runs:
     - name: Set final release version (remove -SNAPSHOT)
       shell: bash
       run: |
-        if [ -f __version__.py]; then
+        if [ -f __version__.py ]; then
           sed -i -E 's|version.*|version = "${{ env.RELEASE_VERSION }}"|g' __version__.py
         elif [ -f setup.py ]; then
           sed -i "s/version.*/version='${{ env.RELEASE_VERSION }}',/" setup.py
@@ -65,7 +65,7 @@ runs:
         next_patch=$((patch + 1))
         next_version="${major}.${minor}.${next_patch}.dev0"
         
-        if [ -f __version__.py]; then
+        if [ -f __version__.py ]; then
           sed -i -E 's|version.*|version = "${next_version}"|g' __version__.py
         else
           sed -i -E "s/version.*/version='${next_version}',/" setup.py
