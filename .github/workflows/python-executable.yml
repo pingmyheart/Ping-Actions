@@ -39,6 +39,8 @@ jobs:
         if: "startsWith(github.ref, 'refs/tags/v')"
 
   build-xecutable:
+    needs:
+      - ci
     strategy:
       matrix:
         os: [ ubuntu-22.04, windows-latest, macos-latest ]
