@@ -66,7 +66,7 @@ runs:
         next_version="${major}.${minor}.${next_patch}.dev0"
         
         if [ -f __version__.py ]; then
-          sed -i -E 's|version.*|version = "${next_version}"|g' __version__.py
+          sed -i -E "s/version.*/version = \"${next_version}\",/" __version__.py
         else
           sed -i -E "s/version.*/version='${next_version}',/" setup.py
         fi
