@@ -38,7 +38,7 @@ jobs:
           pip install pyinstaller
         if: "startsWith(github.ref, 'refs/tags/v')"
 
-  build-xecutable:
+  build-executable:
     needs:
       - ci
     strategy:
