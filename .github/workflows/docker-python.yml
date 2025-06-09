@@ -31,6 +31,14 @@ jobs:
         uses: pingmyheart/Ping-Actions/.github/actions/python/gitflow-release@main
         if: "startsWith(github.ref, 'refs/heads/release/')"
 
+      - name: Python Build Action
+        uses: pingmyheart/Ping-Actions/.github/actions/python/build@main
+        if: "!startsWith(github.ref, 'refs/heads/release/') && !startsWith(github.ref, 'refs/heads/main')"
+
+      - name: Python Deploy Action
+        uses: pingmyheart/Ping-Actions/.github/actions/python/deploy@main
+        if: "!startsWith(github.ref, 'refs/heads/release/') && !startsWith(github.ref, 'refs/heads/main')"
+
       - name: Docker Build and Push Action
         uses: pingmyheart/Ping-Actions/.github/actions/docker/build-and-push@main
         if: "!startsWith(github.ref, 'refs/heads/release/') && !startsWith(github.ref, 'refs/heads/main')"
