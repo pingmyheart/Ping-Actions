@@ -37,6 +37,12 @@ jobs:
       java-version: ${{ inputs.java-version }}
     if: ${{ inputs.project-type == 'maven' }}
 
+  python:
+    uses: pingmyheart/Ping-Actions/.github/workflows/python.yml@main
+    with:
+      python-version: ${{ inputs.python-version }}
+    if: ${{ inputs.project-type == 'python' }}
+
   python-executable:
     uses: pingmyheart/Ping-Actions/.github/workflows/python-executable.yml@main
     with:
