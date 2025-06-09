@@ -1,8 +1,13 @@
-name: deploy
-author: arussi2
-description: deploy
+name: Python Deploy Action
+
 runs:
   using: composite
+
   steps:
-    - name:
-      id:
+    - name: Python Build
+      shell: bash
+      env:
+        TWINE_USERNAME: ${{ github.actor }}
+        TWINE_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        twine upload --repository-url https://upload.pypi.org/legacy/ dist/*

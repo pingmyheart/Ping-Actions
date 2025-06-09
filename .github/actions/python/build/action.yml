@@ -1,0 +1,10 @@
+name: Python Build Action
+
+runs:
+  using: composite
+
+  steps:
+    - name: Python Build
+      shell: bash
+      run: |
+        python -m build
