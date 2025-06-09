@@ -10,4 +10,4 @@ runs:
         TWINE_USERNAME: ${{ github.actor }}
         TWINE_PASSWORD: ${{ github.token }}
       run: |
-        twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
+        twine upload dist/*
