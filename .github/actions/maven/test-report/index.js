@@ -5,15 +5,13 @@ const path = require('path');
 
 // Functions Definition
 function findFiles(pattern) {
-    let foundFiles = [];
-    fs.readdir('.', (err, files) => {
-        if (err) {
-            core.setFailed(`Error reading directory: ${err.message}`);
-        }
-        files.filter(file => pattern.test(pattern))
-            .forEach(file => foundFiles.add(file));
-    })
-    return foundFiles
+    let result = []
+    fs.promises.readdir('.', {recursive: true})
+        .then(str => {
+            result = str
+        })
+    core.info(result)
+    return result
 }
 
 function processJacocoFiles(jacocoFiles) {
