@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Functions Definition
-function findFiles(dir = '.', regex, fileList = []) {
+function findFiles(regex, dir = '.', fileList = []) {
     core.info("Searching in: " + dir + " for regex: " + regex);
     const files = fs.readdirSync(dir);
 
@@ -13,8 +13,9 @@ function findFiles(dir = '.', regex, fileList = []) {
         const stat = fs.statSync(filePath);
 
         if (stat.isDirectory()) {
-            findFiles(filePath, regex, fileList);  // Recurse
-        } else if (regex.test(filePath)) {        // Match full path
+            findFiles(filePath, regex, fileList);
+        } else if (regex.test(filePath)) {
+            core.info("Found matching file: " + filePath);
             fileList.push(filePath);
         }
     });
