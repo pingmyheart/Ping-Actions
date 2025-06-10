@@ -4,24 +4,24 @@ const fs = require('fs');
 const path = require('path');
 
 // Functions Definition
-function findFiles(regex) {
-    let fileList = []
-    core.info("Searching for files matching: " + regex);
-    const files = fs.readdirSync('.');
+function findFiles(dir = '.', regex, fileList = []) {
+    core.info("Searching in: " + dir + " for regex: " + regex);
+    const files = fs.readdirSync(dir);
 
     files.forEach(file => {
-        const filePath = path.join('.', file);
+        const filePath = path.join(dir, file);
         const stat = fs.statSync(filePath);
 
         if (stat.isDirectory()) {
-            findFiles(filePath, regex, fileList);
-        } else if (regex.test(file)) {
+            findFiles(filePath, regex, fileList);  // Recurse
+        } else if (regex.test(filePath)) {        // Match full path
             fileList.push(filePath);
         }
     });
 
     return fileList;
 }
+
 
 function processJacocoFiles(jacocoFiles) {
     jacocoFiles.forEach(file => {
