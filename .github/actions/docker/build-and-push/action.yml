@@ -49,4 +49,5 @@ runs:
       shell: bash
       run: |
         echo "# 🐋 Docker Build Summary" >> $GITHUB_STEP_SUMMARY
-        echo "**Docker Image**: ghcr.io/${{ github.repository }}:${{ env.VERSION }}  " >> $GITHUB_STEP_SUMMARY
+        image_name_no_tag=$(echo "ghcr.io/${{ github.repository }}" | awk '{print tolower($0)}')
+        echo "**Docker Image**: ghcr.io/$image_name_no_tag:${{ env.VERSION }}  " >> $GITHUB_STEP_SUMMARY
