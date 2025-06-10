@@ -48,5 +48,5 @@ runs:
     - name: Build Summary
       shell: bash
       run: |
-        echo "# Docker Build Summary" >> $GITHUB_STEP_SUMMARY
+        echo "# 🐋 Docker Build Summary" >> $GITHUB_STEP_SUMMARY
         echo "**Docker Image**: ghcr.io/${{ github.repository }}:${{ env.VERSION }}  " >> $GITHUB_STEP_SUMMARY
