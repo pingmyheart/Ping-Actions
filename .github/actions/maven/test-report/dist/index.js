@@ -31882,12 +31882,12 @@ function processSurefireFiles(surefireFiles) {
 
 // Main Logic
 
-const jacocoFilesRegex = ".*/jacoco.xml";
-const surefireFilesRegex = ".*/surefire-reports/TEST-.*\.xml";
+const jacocoRegex = /[/\\]jacoco\.xml$/;
+const surefireRegex = /[/\\]surefire-reports[/\\]TEST-.*\.xml$/;
 // Look For Jacoco
 
 
-const jacocoFiles = findFiles(jacocoFilesRegex);
+const jacocoFiles = findFiles(jacocoRegex);
 
 if (jacocoFiles.length !== 0) {
     processJacocoFiles(jacocoFiles);
@@ -31895,7 +31895,7 @@ if (jacocoFiles.length !== 0) {
 }
 // Looking For Surefire
 
-const surefireFiles = findFiles(surefireFilesRegex);
+const surefireFiles = findFiles(surefireRegex);
 
 if (surefireFiles.length === 0) {
     processSurefireFiles(surefireFiles);
