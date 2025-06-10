@@ -5,6 +5,7 @@ const path = require('path');
 
 // Functions Definition
 function findFiles(pattern) {
+    core.info("Retrieving files with pattern: " + pattern);
     let result = []
     fs.promises.readdir('.', {recursive: true})
         .then(str => {

@@ -31834,6 +31834,7 @@ const path = __nccwpck_require__(6928);
 
 // Functions Definition
 function findFiles(pattern) {
+    core.info("Retrieving files with pattern: " + pattern);
     let result = []
     fs.promises.readdir('.', {recursive: true})
         .then(str => {
