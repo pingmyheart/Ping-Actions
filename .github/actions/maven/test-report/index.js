@@ -4,12 +4,13 @@ const fs = require('fs');
 const path = require('path');
 
 // Functions Definition
-function findFiles(dir, regex, fileList = []) {
+function findFiles(regex) {
+    let fileList = []
     core.info("Searching for files matching: " + regex);
-    const files = fs.readdirSync(dir);
+    const files = fs.readdirSync('.');
 
     files.forEach(file => {
-        const filePath = path.join(dir, file);
+        const filePath = path.join('.', file);
         const stat = fs.statSync(filePath);
 
         if (stat.isDirectory()) {
@@ -52,8 +53,8 @@ function processSurefireFiles(surefireFiles) {
 
 // Main Logic
 
-const jacocoFilesRegex = "*/jacoco.xml";
-const surefireFilesRegex = "*/surefire-reports/TEST-*.xml";
+const jacocoFilesRegex = ".*/jacoco.xml";
+const surefireFilesRegex = ".*/surefire-reports/TEST-.*\.xml";
 // Look For Jacoco
 
 

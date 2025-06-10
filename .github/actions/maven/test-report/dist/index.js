@@ -31833,15 +31833,23 @@ const fs = __nccwpck_require__(9896);
 const path = __nccwpck_require__(6928);
 
 // Functions Definition
-function findFiles(pattern) {
-    core.info("Retrieving files with pattern: " + pattern);
-    let result = []
-    fs.promises.readdir('.', {recursive: true})
-        .then(str => {
-            result = str
-        })
-    core.info(result)
-    return result
+function findFiles(regex) {
+    let fileList = []
+    core.info("Searching for files matching: " + regex);
+    const files = fs.readdirSync('.');
+
+    files.forEach(file => {
+        const filePath = path.join('.', file);
+        const stat = fs.statSync(filePath);
+
+        if (stat.isDirectory()) {
+            findFiles(filePath, regex, fileList);
+        } else if (regex.test(file)) {
+            fileList.push(filePath);
+        }
+    });
+
+    return fileList;
 }
 
 function processJacocoFiles(jacocoFiles) {
@@ -31874,8 +31882,8 @@ function processSurefireFiles(surefireFiles) {
 
 // Main Logic
 
-const jacocoFilesRegex = "*/jacoco.xml";
-const surefireFilesRegex = "*/surefire-reports/TEST-*.xml";
+const jacocoFilesRegex = ".*/jacoco.xml";
+const surefireFilesRegex = ".*/surefire-reports/TEST-.*\.xml";
 // Look For Jacoco
 
 
