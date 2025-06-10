@@ -44,3 +44,9 @@ runs:
         build-args: |
           SERVICE_NAME=${{ github.repository }}
           SERVICE_VERSION=${{ env.VERSION }}
+
+    - name: Build Summary
+      shell: bash
+      run: |
+        echo "# Docker Build Summary" >> ${{ github.env.GITHUB_STEP_SUMMARY }}
+        echo "**Docker Image**: ghcr.io/${{ github.repository }}:${{ env.VERSION }}  " >> ${{ github.env.GITHUB_STEP_SUMMARY }}

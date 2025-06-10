@@ -42253,7 +42253,6 @@ async function main() {
                 const xml = fs.readFileSync(file, 'utf-8');
                 const parser = new XMLParser();
                 const json = parser.parse(xml);
-                core.info(JSON.stringify(json, null, 2));
 
                 if (json.testsuite) {
                     const suite = json.testsuite;
