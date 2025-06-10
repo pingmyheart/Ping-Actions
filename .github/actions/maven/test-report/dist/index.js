@@ -31833,24 +31833,21 @@ const fs = __nccwpck_require__(9896);
 const path = __nccwpck_require__(6928);
 
 // Functions Definition
-function findFiles(regex, dir = '.', fileList = []) {
-    core.info("Searching in: " + dir + " for regex: " + regex);
-    return fs.readdir(dir, {recursive: true})
-    // const files = fs.readdirSync(dir);
-    //
-    // files.forEach(file => {
-    //     const filePath = path.join(dir, file);
-    //     const stat = fs.statSync(filePath);
-    //
-    //     if (stat.isDirectory()) {
-    //         findFiles(filePath, regex, fileList);
-    //     } else if (regex.test(filePath)) {
-    //         core.info("Found matching file: " + filePath);
-    //         fileList.push(filePath);
-    //     }
-    // });
-    //
-    // return fileList;
+function getAllFilesSync() {
+    let results = [];
+    const list = fs.readdirSync('.', {withFileTypes: true});
+
+    list.forEach((dirent) => {
+        const filePath = path.resolve('.', dirent.name);
+
+        if (dirent.isDirectory()) {
+            results = results.concat(getAllFilesSync(filePath));
+        } else {
+            results.push(filePath);
+        }
+    });
+
+    return results;
 }
 
 
@@ -31889,20 +31886,9 @@ const surefireRegex = /[/\\]surefire-reports[/\\]TEST-.*\.xml$/;
 // Look For Jacoco
 
 
-const jacocoFiles = findFiles(jacocoRegex);
+const jacocoFiles = getAllFilesSync();
+core.info(jacocoFiles)
 
-if (jacocoFiles.length !== 0) {
-    processJacocoFiles(jacocoFiles);
-    return;
-}
-// Looking For Surefire
-
-const surefireFiles = findFiles(surefireRegex);
-
-if (surefireFiles.length === 0) {
-    processSurefireFiles(surefireFiles);
-    return;
-}
 
 module.exports = __webpack_exports__;
 /******/ })()
