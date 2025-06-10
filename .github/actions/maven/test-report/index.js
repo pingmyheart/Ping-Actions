@@ -6,21 +6,22 @@ const path = require('path');
 // Functions Definition
 function findFiles(regex, dir = '.', fileList = []) {
     core.info("Searching in: " + dir + " for regex: " + regex);
-    const files = fs.readdirSync(dir);
-
-    files.forEach(file => {
-        const filePath = path.join(dir, file);
-        const stat = fs.statSync(filePath);
-
-        if (stat.isDirectory()) {
-            findFiles(filePath, regex, fileList);
-        } else if (regex.test(filePath)) {
-            core.info("Found matching file: " + filePath);
-            fileList.push(filePath);
-        }
-    });
-
-    return fileList;
+    return fs.readdir(dir, {recursive: true})
+    // const files = fs.readdirSync(dir);
+    //
+    // files.forEach(file => {
+    //     const filePath = path.join(dir, file);
+    //     const stat = fs.statSync(filePath);
+    //
+    //     if (stat.isDirectory()) {
+    //         findFiles(filePath, regex, fileList);
+    //     } else if (regex.test(filePath)) {
+    //         core.info("Found matching file: " + filePath);
+    //         fileList.push(filePath);
+    //     }
+    // });
+    //
+    // return fileList;
 }
 
 
