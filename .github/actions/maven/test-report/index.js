@@ -51,47 +51,6 @@ async function main() {
             }
         });
     }
-    // else {
-    //     core.info('No JaCoCo reports found. Looking for Surefire reports...');
-    //
-    //     const surefireFiles = glob.sync('**/target/surefire-reports/*.xml', {absolute: true});
-    //
-    //     if (surefireFiles.length > 0) {
-    //         core.info(`Found ${surefireFiles.length} Surefire report(s).`);
-    //         reportContent += `# ✅ Surefire Test Report(s)\n\n`;
-    //
-    //         surefireFiles.forEach((file) => {
-    //             const xml = fs.readFileSync(file, 'utf-8');
-    //             const parser = new XMLParser();
-    //             const json = parser.parse(xml);
-    //
-    //             if (json.testsuite) {
-    //                 const suite = json.testsuite;
-    //                 const tests = parseInt(suite['@_tests'] || 0, 10);
-    //                 const failures = parseInt(suite['@_failures'] || 0, 10);
-    //                 const errors = parseInt(suite['@_errors'] || 0, 10);
-    //                 const skipped = parseInt(suite['@_skipped'] || 0, 10);
-    //                 const passed = tests - failures - errors - skipped;
-    //
-    //                 reportContent += `## 📄 ${path.relative(process.cwd(), file)}\n\n`;
-    //                 reportContent += `| Metric | Count |\n`;
-    //                 reportContent += `|--------|-------|\n`;
-    //                 reportContent += `| Total Tests | ${tests} |\n`;
-    //                 reportContent += `| Passed | ${passed} |\n`;
-    //                 reportContent += `| Failures | ${failures} |\n`;
-    //                 reportContent += `| Errors | ${errors} |\n`;
-    //                 reportContent += `| Skipped | ${skipped} |\n`;
-    //
-    //                 reportContent += `\n`;
-    //             } else {
-    //                 reportContent += `Could not parse ${file}\n\n`;
-    //             }
-    //         });
-    //     } else {
-    //         core.info('No Surefire reports found.');
-    //         reportContent += `# ℹ️ No JaCoCo or Surefire reports found.\n`;
-    //     }
-    // }
 
     // Write to GitHub Actions summary
     fs.writeFileSync(GITHUB_STEP_SUMMARY, reportContent);
