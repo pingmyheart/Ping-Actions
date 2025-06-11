@@ -110,6 +110,34 @@ jobs:
       java-version: 17
 ```
 
+### Python Dispatcher
+
+```yaml
+name: CI
+# Triggers
+on:
+  workflow_dispatch: # Manual trigger from the Actions tab
+  push:
+    branches:
+      - '**'
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+  packages: write
+  pages: write
+  actions: write
+
+jobs:
+  ci:
+    secrets: inherit
+    uses: pingmyheart/Ping-Actions/.github/workflows/dispatcher.yml@main
+    with:
+      project-type: python
+      python-version: "3.10"
+```
+
 ### Python Executable Dispatcher
 
 ```yaml
