@@ -1,0 +1,10 @@
+name: Python Build Action
+
+runs:
+  using: composite
+
+  steps:
+    - name: Platformio Build
+      shell: bash
+      run: |
+        pio run

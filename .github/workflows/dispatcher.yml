@@ -37,6 +37,12 @@ jobs:
       java-version: ${{ inputs.java-version }}
     if: ${{ inputs.project-type == 'maven' }}
 
+  platformio:
+    uses: pingmyheart/Ping-Actions/.github/workflows/platformio.yml@main
+    with:
+      python-version: ${{ inputs.python-version }}
+    if: ${{ inputs.project-type == 'platformio' }}
+
   python:
     uses: pingmyheart/Ping-Actions/.github/workflows/python.yml@main
     with:
