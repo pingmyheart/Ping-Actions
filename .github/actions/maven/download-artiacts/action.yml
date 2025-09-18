@@ -27,7 +27,7 @@ runs:
           for SUFFIX in "" .md5 .sha1; do
             FILE="$ARTIFACT_ID-$VERSION.$EXT$SUFFIX"
             echo "Fetching $FILE"
-            curl -f -L -o "release-artifacts/$FILE" "$BASE_URL/$FILE"
+            curl -u "${GITHUB_ACTOR}:${GITHUB_TOKEN}" -f -L -o "release-artifacts/$FILE" "$BASE_URL/$FILE"
           done
         done
       env:
