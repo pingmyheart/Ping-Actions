@@ -1,0 +1,34 @@
+name: Maven Download Release Deployed Artifacts Action
+
+runs:
+  using: composite
+
+  steps:
+    - name: Download deployed artifacts from GitHub Packages Maven registry
+      shell: bash
+      run: |
+        # Extract Maven coordinates from pom.xml
+        GROUP_ID=$(mvn help:evaluate -Dexpression=project.groupId -q -DforceStdout)
+        ARTIFACT_ID=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)
+        VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        
+        # Convert groupId to path
+        GROUP_PATH=$(echo $GROUP_ID | tr '.' '/')
+        
+        # Build base URL for GitHub Packages Maven registry
+        BASE_URL="https://maven.pkg.github.com/${{ github.repository }}/$GROUP_PATH/$ARTIFACT_ID/$VERSION"
+        
+        echo "Downloading artifacts for $GROUP_ID:$ARTIFACT_ID:$VERSION"
+        
+        mkdir -p release-artifacts
+        
+        # Download jar, pom, and checksums
+        for EXT in jar pom; do
+          for SUFFIX in "" .md5 .sha1; do
+            FILE="$ARTIFACT_ID-$VERSION.$EXT$SUFFIX"
+            echo "Fetching $FILE"
+            curl -f -L -o "release-artifacts/$FILE" "$BASE_URL/$FILE"
+          done
+        done
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
