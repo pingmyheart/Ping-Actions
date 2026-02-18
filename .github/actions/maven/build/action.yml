@@ -4,7 +4,7 @@ runs:
   using: composite
 
   steps:
-    - name: Testcontainer fix
+    - name: TestContainer Fix
       shell: bash
       run: |
         echo api.version=1.44 >> ~/.docker-java.properties
