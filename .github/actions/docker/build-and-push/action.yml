@@ -42,7 +42,7 @@ runs:
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
         build-args: |
-          SERVICE_NAME=${{ github.repository }}
+          SERVICE_NAME=${{ github.event.repository.name }}
           SERVICE_VERSION=${{ env.VERSION }}
 
     - name: Build Summary
