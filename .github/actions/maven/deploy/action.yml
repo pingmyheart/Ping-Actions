@@ -7,7 +7,7 @@ runs:
     - name: Deploy
       shell: bash
       run: |
-        mvn -B deploy
+        mvn -B deploy -DskipTests
         echo "Maven deploy completed successfully."
       env:
         GITHUB_TOKEN: ${{ github.token }}

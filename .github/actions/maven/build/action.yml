@@ -4,6 +4,10 @@ runs:
   using: composite
 
   steps:
+    - name: Testcontainer fix
+      shell: bash
+      run: |
+        echo api.version=1.44 >> ~/.docker-java.properties
     - name: Build
       shell: bash
       run: |
