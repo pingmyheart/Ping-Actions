@@ -8,6 +8,14 @@ runs:
       shell: bash
       run: |
         echo api.version=1.44 >> ~/.docker-java.properties
+    - name: Cache Maven repository
+      uses: actions/cache@v4
+      with:
+        path: ~/.m2/repository
+        key: m2-${{ runner.os }}-${{ github.ref_name }}-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          m2-${{ runner.os }}-${{ github.ref_name }}-
+          m2-${{ runner.os }}-
     - name: Build
       shell: bash
       run: |
