@@ -69,7 +69,7 @@ if __name__ == '__main__':
         # Retrieve all packages
         for package in root.findall('package'):
             package_name = package.attrib.get('name', 'Unknown Package')
-            report += '<details open>\n'
+            report += '<details>\n'
             report += f'<summary>Package {package_name}</summary>\n\n'
 
             # Retrieve missed and covered lines for the package
