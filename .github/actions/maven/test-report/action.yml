@@ -1,5 +1,14 @@
 name: Maven Test Report Action
 
 runs:
-  using: node20
-  main: dist/index.js
+  using: composite
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - run: pip install -r requirements.txt
+      shell: bash
+
+    - run: python main.py
+      shell: bash

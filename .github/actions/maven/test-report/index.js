@@ -17,7 +17,7 @@ async function main() {
 
     if (jacocoFiles.length > 0) {
         core.info(`Found ${jacocoFiles.length} JaCoCo report(s).`);
-        reportContent += `# 🛡️ JaCoCo Coverage Report(s)\n\n`;
+        reportContent += `# 🛡️ JaCoCo Coverage Report\n\n`;
 
         jacocoFiles.forEach((file) => {
             const xml = fs.readFileSync(file, 'utf-8');
