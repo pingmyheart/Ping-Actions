@@ -69,7 +69,8 @@ if __name__ == '__main__':
         # Retrieve all packages
         for package in root.findall('package'):
             package_name = package.attrib.get('name', 'Unknown Package')
-            report += f'### Package: {package_name}\n\n'
+            report += '<details open>\n'
+            report += f'<summary>Package {package_name}</summary>\n\n'
 
             # Retrieve missed and covered lines for the package
             package_instruction = package.find("counter[@type='INSTRUCTION']")
@@ -79,5 +80,6 @@ if __name__ == '__main__':
             report += "| Covered Instructions | Missed Instructions | Total Instructions | Coverage Percentage |\n"
             report += "|----------------------|---------------------|--------------------|---------------------|\n"
             report += f'| {package_covered} | {package_missed} | {package_total} | {package_coverage_percentage:.0f}% |\n\n'
+            report += '</details>\n\n'
 
     write_report(report)
