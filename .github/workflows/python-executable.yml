@@ -40,7 +40,7 @@ jobs:
 
   build-executable:
     needs:
-      - ci
+      - python-executable
     strategy:
       matrix:
         os: [ ubuntu-22.04, windows-latest, macos-latest ]
