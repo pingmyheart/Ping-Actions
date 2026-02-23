@@ -34,7 +34,7 @@ def write_report(report: str) -> None:
 
 if __name__ == '__main__':
     # obtain summary file
-    report = '# 🛡️ JaCoCo Coverage Report\n\n'
+    report = '# 🎯 JaCoCo Coverage Report\n\n'
 
     # check if positional argument is provided
     files: list[str] = []
