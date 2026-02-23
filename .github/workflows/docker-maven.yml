@@ -16,7 +16,7 @@ on:
         default: "21"
 
 jobs:
-  ci:
+  docker-maven:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code

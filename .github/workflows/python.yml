@@ -16,7 +16,7 @@ on:
         default: "3.10"
 
 jobs:
-  ci:
+  python:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
