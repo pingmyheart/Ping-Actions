@@ -66,6 +66,8 @@ if __name__ == '__main__':
         report += "|----------------------|---------------------|--------------------|---------------------|\n"
         report += f'| {global_covered} | {global_missed} | {global_total} | {coverage_percentage:.0f}% |\n\n'
 
+        report += '<details>\n'
+        report += '<summary>Detailed Package Coverage</summary>\n\n'
         # Retrieve all packages
         for package in root.findall('package'):
             package_name = package.attrib.get('name', 'Unknown Package')
@@ -81,5 +83,6 @@ if __name__ == '__main__':
             report += "|----------------------|---------------------|--------------------|---------------------|\n"
             report += f'| {package_covered} | {package_missed} | {package_total} | {package_coverage_percentage:.0f}% |\n\n'
             report += '</details>\n\n'
+        report += '</details>\n\n'
 
     write_report(report)
