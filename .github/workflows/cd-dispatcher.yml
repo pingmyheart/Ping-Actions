@@ -1,0 +1,59 @@
+name: CD Dispatcher
+on:
+  workflow_dispatch:
+    inputs:
+      country:
+        description: "Select the country"
+        type: string
+        required: false
+        default: "."
+      farm:
+        description: "Select the farm"
+        type: string
+        required: false
+        default: "."
+      environment:
+        description: "Select the environment"
+        type: string
+        required: false
+        default: "dev"
+      container-image:
+        description: "Select the container image to patch in manifest"
+        type: string
+        required: true
+  workflow_call:
+    inputs:
+      country:
+        description: "Select the country"
+        type: string
+        required: false
+        default: "."
+      farm:
+        description: "Select the farm"
+        type: string
+        required: false
+        default: "."
+      environment:
+        description: "Select the environment"
+        type: string
+        required: false
+        default: "dev"
+      container-image:
+        description: "Select the container image to patch in manifest"
+        type: string
+        required: true
+
+jobs:
+  call-cd:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Call CD Workflow
+        uses: pingmyheart/Ping-Actions/.github/actions/docker/k8s-manifest-update@main
+        with:
+          container-image: ${{ inputs.container-image }}
+          country: ${{ inputs.country }}
+          environment: ${{ inputs.environment }}
+          farm: ${{ inputs.farm }}
