@@ -21,7 +21,7 @@ on:
         description: "Select the container image to patch in manifest"
         type: string
         required: true
-      manifest-repo:
+      repo-name:
         description: "Select the repository containing the Kubernetes manifest to update"
         type: string
         required: true
@@ -46,7 +46,7 @@ on:
         description: "Select the container image to patch in manifest"
         type: string
         required: true
-      manifest-repo:
+      repo-name:
         description: "Select the repository containing the Kubernetes manifest to update"
         type: string
         required: true
@@ -57,8 +57,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          repository: ${{ inputs.manifest-repo }}
 
       - name: Run CD Workflow
         uses: pingmyheart/Ping-Actions/.github/actions/docker/k8s-manifest-update@main
@@ -67,3 +65,4 @@ jobs:
           country: ${{ inputs.country }}
           environment: ${{ inputs.environment }}
           farm: ${{ inputs.farm }}
+          repo-name: ${{ inputs.repo-name }}
