@@ -21,6 +21,10 @@ on:
         description: "Select the container image to patch in manifest"
         type: string
         required: true
+      manifest-repo:
+        description: "Select the repository containing the Kubernetes manifest to update"
+        type: string
+        required: true
   workflow_call:
     inputs:
       country:
@@ -42,6 +46,10 @@ on:
         description: "Select the container image to patch in manifest"
         type: string
         required: true
+      manifest-repo:
+        description: "Select the repository containing the Kubernetes manifest to update"
+        type: string
+        required: true
 
 jobs:
   call-cd:
@@ -49,8 +57,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          repository: ${{ inputs.manifest-repo }}
 
-      - name: Call CD Workflow
+      - name: Run CD Workflow
         uses: pingmyheart/Ping-Actions/.github/actions/docker/k8s-manifest-update@main
         with:
           container-image: ${{ inputs.container-image }}
