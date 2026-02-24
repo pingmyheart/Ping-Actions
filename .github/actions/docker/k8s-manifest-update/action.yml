@@ -32,7 +32,7 @@ runs:
         --environment "${{ inputs.environment }}" \
         --farm "${{ inputs.farm }}" \
         --container-image "${{ inputs.container-image }}" \
-        --trace"
+        --trace
       shell: bash
 
     - name: Commit and push manifest changes
