@@ -13,6 +13,9 @@ inputs:
   container-image:
     description: 'New container image to update in the Kubernetes manifest'
     required: true
+  repo-name:
+    description: 'Name of the repository containing the Kubernetes manifest to update'
+    required: true
 
 runs:
   using: composite
@@ -27,7 +30,7 @@ runs:
       run: |
         chmod +x "${{ github.action_path }}/main.sh"
         "${{ github.action_path }}/main.sh" \
-        --repo-name "${{ github.event.repository.name }}" \
+        --repo-name "${{ inputs.repo-name }}" \
         --country "${{ inputs.country }}" \
         --environment "${{ inputs.environment }}" \
         --farm "${{ inputs.farm }}" \
@@ -39,5 +42,5 @@ runs:
       shell: bash
       run: |
         git add .
-        git commit -m "[GITHUB ACTION] - Update Kubernetes manifest with new container image for ${{ github.event.repository.name }}"
+        git commit -m "[GITHUB ACTION] - Update Kubernetes manifest with new container image for ${{ inputs.repo-name }}"
         git push origin HEAD
