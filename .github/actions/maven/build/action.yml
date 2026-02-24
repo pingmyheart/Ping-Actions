@@ -12,7 +12,7 @@ runs:
       uses: actions/cache@v4
       with:
         path: ~/.m2/repository
-        key: m2-${{ runner.os }}-${{ github.ref_name }}-${{ hashFiles('**/pom.xml') }}
+        key: m2-${{ runner.os }}-${{ github.ref_name }}
         restore-keys: |
           m2-${{ runner.os }}-${{ github.ref_name }}-
           m2-${{ runner.os }}-
