@@ -26,13 +26,13 @@ runs:
     - name: Update Manifest
       run: |
         chmod +x "${{ github.action_path }}/main.sh"
-        "${{ github.action_path }}/main.sh" \
-        "--repo-name ${{ github.event.repository.name }}" \
-        "--country ${{ inputs.country }}" \
-        "--environment ${{ inputs.environment }}" \
-        "--farm ${{ inputs.farm }}" \
-        "--container-image ${{ inputs.container-image }}" \
-        "--trace"
+        ${{ github.action_path }}/main.sh" \
+        --repo-name "${{ github.event.repository.name }}" \
+        --country "${{ inputs.country }}" \
+        --environment "${{ inputs.environment }}" \
+        --farm "${{ inputs.farm }}" \
+        --container-image "${{ inputs.container-image }}" \
+        --trace"
       shell: bash
 
     - name: Commit and push manifest changes
