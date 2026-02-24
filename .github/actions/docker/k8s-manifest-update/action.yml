@@ -1,0 +1,14 @@
+name: Kubernetes Manifest Update Action
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - run: pip install -r "${{ github.action_path }}/requirements.txt"
+      shell: bash
+
+    - run: python "${{ github.action_path }}/main.py"
+      shell: bash
