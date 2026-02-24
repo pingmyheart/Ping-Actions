@@ -1,5 +1,19 @@
 name: Kubernetes Manifest Update Action
 
+inputs:
+  country:
+    description: 'Country for which the manifest should be updated'
+    required: true
+  environment:
+    description: 'Environment for which the manifest should be updated (e.g., dev, staging, prod)'
+    required: true
+  farm:
+    description: 'Farm for which the manifest should be updated'
+    required: true
+  container-image:
+    description: 'New container image to update in the Kubernetes manifest'
+    required: true
+
 runs:
   using: composite
   steps:
