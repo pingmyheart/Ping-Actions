@@ -31,7 +31,8 @@ runs:
         "--country ${{ inputs.country }}" \
         "--environment ${{ inputs.environment }}" \
         "--farm ${{ inputs.farm }}" \
-        "--container-image ${{ inputs.container-image }}"
+        "--container-image ${{ inputs.container-image }}" \
+        "--trace"
       shell: bash
 
     - name: Commit and push manifest changes
