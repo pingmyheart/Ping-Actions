@@ -61,7 +61,7 @@ if __name__ == '__main__':
         global_total = global_covered + global_missed
         coverage_percentage = (global_covered / global_total * 100) if global_total > 0 else 0
 
-        report += f'### Module: {report_name}\n\n'
+        report += f'### Module: `{report_name}`\n\n'
         report += "| Covered Instructions | Missed Instructions | Total Instructions | Coverage Percentage |\n"
         report += "|----------------------|---------------------|--------------------|---------------------|\n"
         report += f'| {global_covered} | {global_missed} | {global_total} | {coverage_percentage:.0f}% |\n\n'
