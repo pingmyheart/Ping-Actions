@@ -34,7 +34,7 @@ def write_report(report: str) -> None:
 
 if __name__ == '__main__':
     # obtain summary file
-    report = '# 🎯 JaCoCo Coverage Report\n\n'
+    report = '## 🎯 JaCoCo Coverage Report\n\n'
 
     # check if positional argument is provided
     files: list[str] = []
@@ -61,7 +61,7 @@ if __name__ == '__main__':
         global_total = global_covered + global_missed
         coverage_percentage = (global_covered / global_total * 100) if global_total > 0 else 0
 
-        report += f'## Module: {report_name}\n\n'
+        report += f'### Module: {report_name}\n\n'
         report += "| Covered Instructions | Missed Instructions | Total Instructions | Coverage Percentage |\n"
         report += "|----------------------|---------------------|--------------------|---------------------|\n"
         report += f'| {global_covered} | {global_missed} | {global_total} | {coverage_percentage:.0f}% |\n\n'

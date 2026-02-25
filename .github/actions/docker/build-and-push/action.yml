@@ -48,6 +48,6 @@ runs:
     - name: Build Summary
       shell: bash
       run: |
-        echo "# 🐋 Docker Build Summary" >> $GITHUB_STEP_SUMMARY
+        echo "## 🐋 Docker Build Summary" >> $GITHUB_STEP_SUMMARY
         image_name_no_tag=$(echo "ghcr.io/${{ github.repository }}" | awk '{print tolower($0)}')
         echo "**Docker Image**: $image_name_no_tag:${{ env.VERSION }}  " >> $GITHUB_STEP_SUMMARY
