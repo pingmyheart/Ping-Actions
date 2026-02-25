@@ -1,4 +1,4 @@
-name: Platformio Aggregated Workflow
+name: PlatformIO Aggregated Workflow
 on:
   workflow_dispatch:
     inputs:
