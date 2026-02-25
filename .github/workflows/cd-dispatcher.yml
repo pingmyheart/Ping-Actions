@@ -52,7 +52,7 @@ on:
         required: true
 
 jobs:
-  call-cd:
+  cd-dispatcher:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
