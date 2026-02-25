@@ -4,7 +4,7 @@ runs:
   using: composite
 
   steps:
-    - name: Platformio Build
+    - name: PlatformIO Build
       shell: bash
       run: |
         pio run
