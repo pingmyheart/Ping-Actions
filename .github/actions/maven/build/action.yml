@@ -23,6 +23,7 @@ runs:
         echo "Maven build completed successfully."
       env:
         GITHUB_TOKEN: ${{ github.token }}
+
     - name: Collect JaCoCo Reports
       shell: bash
       run: |
