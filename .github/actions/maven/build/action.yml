@@ -35,3 +35,4 @@ runs:
       with:
         name: jacoco-reports
         path: jacoco-results
+        if-no-files-found: ignore
