@@ -23,7 +23,6 @@ runs:
         echo "Maven build completed successfully."
       env:
         GITHUB_TOKEN: ${{ github.token }}
-
     - name: Collect JaCoCo Reports
       shell: bash
       run: |
@@ -31,7 +30,6 @@ runs:
         find . -type f -name "jacoco.xml" -exec cp --parents {} jacoco-results/ \;
         echo "Collected JaCoCo reports:"
         find jacoco-results -name "jacoco.xml"
-
     - name: Upload JaCoCo Reports
       uses: actions/upload-artifact@v4
       with:
