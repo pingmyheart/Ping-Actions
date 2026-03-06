@@ -26,10 +26,24 @@ runs:
     - name: Collect JaCoCo Reports
       shell: bash
       run: |
-        mkdir -p jacoco-results
-        find . -type f -name "jacoco.xml" -exec cp --parents {} jacoco-results/ \;
+        DEST="jacoco-reports"
+        
+        # Find all jacoco.xml files
+        find . -type f -name "jacoco.xml" | while read -r file; do
+        # Remove leading ./
+        rel_path="${file#./}"
+        
+        # Destination path
+        dest_path="$DEST/$rel_path"
+        
+        # Create destination directory
+        mkdir -p "$(dirname "$dest_path")"
+        
+        # Copy file
+        cp "$file" "$dest_path"
+        done
         echo "Collected JaCoCo reports:"
-        find jacoco-results -name "jacoco.xml"
+        find $DEST -name "jacoco.xml"
     - name: Upload JaCoCo Reports
       uses: actions/upload-artifact@v4
       with:
