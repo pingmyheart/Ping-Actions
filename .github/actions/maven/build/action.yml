@@ -41,9 +41,9 @@ runs:
         
         # Copy file
         cp "$file" "$dest_path"
-        done
+        done || true
         echo "Collected JaCoCo reports:"
-        find $DEST -name "jacoco.xml"
+        find $DEST -name "jacoco.xml" || true
     - name: Upload JaCoCo Reports
       uses: actions/upload-artifact@v4
       with:
