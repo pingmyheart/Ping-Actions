@@ -7,6 +7,11 @@ on:
         required: false
         type: string
         default: "3.10"
+      python-deploy-enabled:
+        description: "Enable Python deployment steps"
+        required: false
+        type: boolean
+        default: false
   workflow_call:
     inputs:
       python-version:
@@ -14,6 +19,11 @@ on:
         required: false
         type: string
         default: "3.10"
+      python-deploy-enabled:
+        description: "Enable Python deployment steps"
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   python:
@@ -37,7 +47,7 @@ jobs:
 
       - name: Python Deploy Action
         uses: pingmyheart/Ping-Actions/.github/actions/python/deploy@main
-        if: "!startsWith(github.ref, 'refs/heads/release/') && !startsWith(github.ref, 'refs/heads/main')"
+        if: ${{ !startsWith(github.ref, 'refs/heads/release/') && !startsWith(github.ref, 'refs/heads/main') && inputs.python-deploy-enabled }}
 
       - name: Github Release Action
         uses: softprops/action-gh-release@v2
