@@ -7,4 +7,6 @@ runs:
     - name: Python Build
       shell: bash
       run: |
+        pip install build twine
+        pip install pytest coverage
         python -m build
